@@ -7,6 +7,7 @@ import { Plus, Search, MapPin, Home, Calendar } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
+import { AddPropertyDialog } from "@/components/AddPropertyDialog";
 
 interface Property {
   id: string;

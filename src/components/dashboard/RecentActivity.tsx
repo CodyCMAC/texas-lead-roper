@@ -57,7 +57,23 @@ export const RecentActivity = () => {
       <CardContent>
         <div className="space-y-4">
           {activities.map((activity) => (
-            <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/30 transition-colors">
+            <div 
+              key={activity.id} 
+              className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/30 transition-colors cursor-pointer"
+              onClick={() => {
+                // Navigate to relevant page based on activity type
+                const type = activity.type;
+                if (type === 'lead_created') {
+                  window.location.href = '/leads';
+                } else if (type === 'opportunity_moved') {
+                  window.location.href = '/opportunities';
+                } else if (type === 'deal_won') {
+                  window.location.href = '/opportunities';
+                } else if (type === 'service_created') {
+                  window.location.href = '/service';
+                }
+              }}
+            >
               <Avatar className="h-8 w-8">
                 <AvatarImage src="" alt={activity.user.name} />
                 <AvatarFallback className="text-xs bg-primary/10 text-primary">

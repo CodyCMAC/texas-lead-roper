@@ -8,6 +8,7 @@ import { Plus, Search, Wrench, Calendar, User, AlertCircle } from "lucide-react"
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
+import { AddServiceTicketDialog } from "@/components/AddServiceTicketDialog";
 
 interface ServiceTicket {
   id: string;
@@ -101,10 +102,12 @@ const Service = () => {
           <h1 className="text-3xl font-bold tracking-tight">Service Tickets</h1>
           <p className="text-muted-foreground">Track and manage service requests</p>
         </div>
-        <Button className="btn-copper gap-2">
-          <Plus className="h-4 w-4" />
-          Create Ticket
-        </Button>
+        <AddServiceTicketDialog onTicketAdded={fetchTickets}>
+          <Button className="btn-copper gap-2">
+            <Plus className="h-4 w-4" />
+            Add Service Ticket
+          </Button>
+        </AddServiceTicketDialog>
       </div>
 
       {/* Search */}
@@ -181,10 +184,12 @@ const Service = () => {
           <p className="text-muted-foreground mb-4">
             {searchTerm ? 'Try adjusting your search terms.' : 'Start by creating your first service ticket.'}
           </p>
-          <Button className="btn-copper gap-2">
-            <Plus className="h-4 w-4" />
-            Create Ticket
-          </Button>
+          <AddServiceTicketDialog onTicketAdded={fetchTickets}>
+            <Button className="btn-copper gap-2">
+              <Plus className="h-4 w-4" />
+              Add Service Ticket
+            </Button>
+          </AddServiceTicketDialog>
         </div>
       )}
     </div>

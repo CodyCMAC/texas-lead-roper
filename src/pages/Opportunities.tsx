@@ -9,6 +9,7 @@ import { Plus, Search, DollarSign, Calendar, Target, Percent } from "lucide-reac
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
+import { AddOpportunityDialog } from "@/components/AddOpportunityDialog";
 
 interface Opportunity {
   id: string;

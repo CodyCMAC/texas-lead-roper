@@ -13,6 +13,7 @@ import Contacts from "./pages/Contacts";
 import Leads from "./pages/Leads";
 import Opportunities from "./pages/Opportunities";
 import Service from "./pages/Service";
+import Tasks from "./pages/Tasks";
 import Reports from "./pages/Reports";
 import NotFound from "./pages/NotFound";
 
@@ -105,6 +106,11 @@ const App = () => (
             <Route path="/tasks" element={
               <ProtectedRoute>
                 <Tasks />
+              </ProtectedRoute>
+            } />
+            <Route path="/reports" element={
+              <ProtectedRoute>
+                <Reports />
               </ProtectedRoute>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

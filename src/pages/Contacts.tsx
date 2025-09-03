@@ -8,6 +8,7 @@ import { Plus, Search, Phone, Mail, User, CheckCircle, XCircle } from "lucide-re
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
+import { AddContactDialog } from "@/components/AddContactDialog";
 
 interface Contact {
   id: string;

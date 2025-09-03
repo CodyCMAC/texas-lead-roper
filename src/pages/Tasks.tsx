@@ -9,6 +9,7 @@ import { Plus, Search, Calendar, User, CheckSquare, AlertCircle } from "lucide-r
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
+import { AddTaskDialog } from "@/components/AddTaskDialog";
 
 interface Task {
   id: string;
@@ -199,10 +200,12 @@ const Tasks = () => {
           <p className="text-muted-foreground mb-4">
             {searchTerm ? 'Try adjusting your search terms.' : 'Start by adding your first task.'}
           </p>
-          <Button className="btn-copper gap-2">
-            <Plus className="h-4 w-4" />
-            Add Task
-          </Button>
+          <AddTaskDialog onTaskAdded={fetchTasks}>
+            <Button className="btn-copper gap-2">
+              <Plus className="h-4 w-4" />
+              Add Task
+            </Button>
+          </AddTaskDialog>
         </div>
       )}
     </div>

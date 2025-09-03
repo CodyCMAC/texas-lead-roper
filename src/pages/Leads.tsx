@@ -8,6 +8,7 @@ import { Plus, Search, Target, Calendar, User, TrendingUp } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
+import { AddLeadDialog } from "@/components/AddLeadDialog";
 
 interface Lead {
   id: string;

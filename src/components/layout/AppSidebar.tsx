@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { User as SupabaseUser } from '@supabase/supabase-js';
+import { useNavigate, useLocation } from "react-router-dom";
 import { ProfileDialog } from "@/components/ProfileDialog";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -74,7 +75,17 @@ export const AppSidebar = ({ user }: AppSidebarProps) => {
       {/* Logo */}
       <div className="p-6 border-b border-border">
         <div className="flex items-center gap-2">
-          <Star className="h-8 w-8 text-primary" />
+          <img 
+            src="/lovable-uploads/c0b242e2-5443-4955-a498-c225fb78a2d9.png" 
+            alt="Lead Wrangler" 
+            className="h-8 w-8"
+            onError={(e) => {
+              // Fallback to icon if image fails to load
+              e.currentTarget.style.display = 'none';
+              e.currentTarget.nextElementSibling?.classList.remove('hidden');
+            }}
+          />
+          <Star className="h-8 w-8 text-primary hidden" />
           <div>
             <h1 className="text-xl font-bold bg-gradient-copper bg-clip-text text-transparent">
               Lead Wrangler
