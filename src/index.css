@@ -1,42 +1,68 @@
-@tailwind base;
+@tailwind base;  
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Lead Wrangler Design System - Texas-flavored, Monday.com inspired
+   All colors MUST be HSL for consistency and theming
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Texas-inspired color palette */
+    --background: 42 15% 97%;
+    --foreground: 215 25% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Longhorn Copper - Primary brand color */
+    --primary: 18 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 18 85% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Warm Sand - Secondary surfaces */
+    --secondary: 42 25% 92%;
+    --secondary-foreground: 215 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Iron - Muted elements */
+    --muted: 210 8% 88%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Prairie Sage - Accent color */
+    --accent: 95 25% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Sunlit Gold - Success/highlight */
+    --success: 45 85% 58%;
+    --success-foreground: 215 25% 15%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Deep Slate borders and inputs */
+    --border: 215 15% 85%;
+    --input: 215 15% 90%;
+    --ring: 18 85% 55%;
 
-    --radius: 0.5rem;
+    /* Texas-themed gradients */
+    --gradient-copper: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-sunset: linear-gradient(135deg, hsl(var(--success)), hsl(var(--primary)));
+    --gradient-sage: linear-gradient(135deg, hsl(var(--accent)), hsl(95 30% 65%));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--background)), hsl(42 20% 95%));
+
+    /* Elegant shadows with copper glow */
+    --shadow-soft: 0 2px 8px -2px hsl(215 25% 15% / 0.08);
+    --shadow-medium: 0 4px 16px -4px hsl(215 25% 15% / 0.12);
+    --shadow-copper: 0 8px 32px -8px hsl(var(--primary) / 0.15);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -52,45 +78,54 @@ All colors MUST be HSL.
 
     --sidebar-border: 220 13% 91%;
 
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark mode with Texas warmth */
+    --background: 215 25% 8%;
+    --foreground: 42 15% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 10%;
+    --card-foreground: 42 15% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 10%;
+    --popover-foreground: 42 15% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Copper remains vibrant in dark */
+    --primary: 18 85% 65%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 18 85% 75%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Darker warm sand */
+    --secondary: 215 20% 15%;
+    --secondary-foreground: 42 15% 85%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 15% 20%;
+    --muted-foreground: 42 10% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Sage accent adjusted for dark */
+    --accent: 95 25% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --success: 45 75% 55%;
+    --success-foreground: 215 25% 8%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 15% 25%;
+    --input: 215 15% 20%;
+    --ring: 18 85% 65%;
+
+    /* Sidebar theming */
+    --sidebar-background: 215 25% 12%;
+    --sidebar-foreground: 42 15% 90%;
+    --sidebar-primary: 18 85% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 215 20% 18%;
+    --sidebar-accent-foreground: 42 15% 85%;
+    --sidebar-border: 215 15% 25%;
+    --sidebar-ring: 18 85% 65%;
   }
 }
 
@@ -100,6 +135,60 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    background-image: var(--gradient-surface);
   }
+
+  /* Typography scale */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 { @apply text-3xl md:text-4xl; }
+  h2 { @apply text-2xl md:text-3xl; }
+  h3 { @apply text-xl md:text-2xl; }
+  h4 { @apply text-lg md:text-xl; }
+
+  /* Custom scrollbars */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/30;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  /* Texas-themed button variants */
+  .btn-copper {
+    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground shadow-copper hover:shadow-lg transition-all duration-300;
+  }
+
+  .btn-sage {
+    @apply bg-gradient-to-r from-accent to-accent/80 text-accent-foreground hover:from-accent/80 hover:to-accent transition-all duration-300;
+  }
+
+  /* Board-style cards */
+  .board-card {
+    @apply bg-card border border-border rounded-lg p-4 shadow-soft hover:shadow-medium transition-all duration-300;
+  }
+
+  /* Status chips */
+  .status-chip {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .status-new { @apply bg-muted text-muted-foreground; }
+  .status-active { @apply bg-primary/10 text-primary border border-primary/20; }
+  .status-won { @apply bg-success/10 text-success border border-success/20; }
+  .status-lost { @apply bg-destructive/10 text-destructive border border-destructive/20; }
 }
