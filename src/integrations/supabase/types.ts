@@ -758,6 +758,14 @@ export type Database = {
         Args: { "": string } | { "": unknown }
         Returns: unknown
       }
+      get_user_role: {
+        Args: { _user_id: string; _workspace_id: string }
+        Returns: Database["public"]["Enums"]["app_role"]
+      }
+      get_user_workspaces: {
+        Args: { _user_id: string }
+        Returns: string[]
+      }
       halfvec_avg: {
         Args: { "": number[] }
         Returns: unknown
