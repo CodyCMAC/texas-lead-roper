@@ -9,7 +9,8 @@ import {
   CheckSquare, 
   Star,
   LogOut,
-  User
+  User,
+  Info
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ const navigationItems = [
   { name: "Opportunities", icon: TrendingUp, href: "/opportunities" },
   { name: "Service", icon: Wrench, href: "/service" },
   { name: "Tasks", icon: CheckSquare, href: "/tasks" },
+  { name: "About Us", icon: Info, href: "/about-us" },
 ];
 
 export const AppSidebar = ({ user }: AppSidebarProps) => {
@@ -78,14 +80,14 @@ export const AppSidebar = ({ user }: AppSidebarProps) => {
           <img 
             src="/lovable-uploads/c0b242e2-5443-4955-a498-c225fb78a2d9.png" 
             alt="Lead Wrangler" 
-            className="h-8 w-8"
+            className="h-12 w-12"
             onError={(e) => {
               // Fallback to icon if image fails to load
               e.currentTarget.style.display = 'none';
               e.currentTarget.nextElementSibling?.classList.remove('hidden');
             }}
           />
-          <Star className="h-8 w-8 text-primary hidden" />
+          <Star className="h-12 w-12 text-primary hidden" />
           <div>
             <h1 className="text-xl font-bold bg-gradient-copper bg-clip-text text-transparent">
               Lead Wrangler

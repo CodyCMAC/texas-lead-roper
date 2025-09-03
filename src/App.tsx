@@ -15,6 +15,7 @@ import Opportunities from "./pages/Opportunities";
 import Service from "./pages/Service";
 import Tasks from "./pages/Tasks";
 import Reports from "./pages/Reports";
+import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -111,6 +112,11 @@ const App = () => (
             <Route path="/reports" element={
               <ProtectedRoute>
                 <Reports />
+              </ProtectedRoute>
+            } />
+            <Route path="/about-us" element={
+              <ProtectedRoute>
+                <AboutUs />
               </ProtectedRoute>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
