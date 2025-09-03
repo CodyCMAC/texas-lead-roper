@@ -91,10 +91,12 @@ const Leads = () => {
           <h1 className="text-3xl font-bold tracking-tight">Leads</h1>
           <p className="text-muted-foreground">Track and manage your sales leads</p>
         </div>
-        <Button className="btn-copper gap-2">
-          <Plus className="h-4 w-4" />
-          Add Lead
-        </Button>
+        <AddLeadDialog onLeadAdded={fetchLeads}>
+          <Button className="btn-copper gap-2">
+            <Plus className="h-4 w-4" />
+            Add Lead
+          </Button>
+        </AddLeadDialog>
       </div>
 
       {/* Search */}
@@ -188,10 +190,12 @@ const Leads = () => {
           <p className="text-muted-foreground mb-4">
             {searchTerm ? 'Try adjusting your search terms.' : 'Start by adding your first lead.'}
           </p>
-          <Button className="btn-copper gap-2">
-            <Plus className="h-4 w-4" />
-            Add Lead
-          </Button>
+          <AddLeadDialog onLeadAdded={fetchLeads}>
+            <Button className="btn-copper gap-2">
+              <Plus className="h-4 w-4" />
+              Add Lead
+            </Button>
+          </AddLeadDialog>
         </div>
       )}
     </div>

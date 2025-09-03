@@ -24,7 +24,7 @@ const Dashboard = () => {
             <Map className="h-4 w-4" />
             Field Map
           </Button>
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => navigate('/reports')}>
             <FileText className="h-4 w-4" />
             Reports
           </Button>

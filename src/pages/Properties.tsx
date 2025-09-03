@@ -73,10 +73,12 @@ const Properties = () => {
           <h1 className="text-3xl font-bold tracking-tight">Properties</h1>
           <p className="text-muted-foreground">Manage your property database</p>
         </div>
-        <Button className="btn-copper gap-2">
-          <Plus className="h-4 w-4" />
-          Add Property
-        </Button>
+        <AddPropertyDialog onPropertyAdded={fetchProperties}>
+          <Button className="btn-copper gap-2">
+            <Plus className="h-4 w-4" />
+            Add Property
+          </Button>
+        </AddPropertyDialog>
       </div>
 
       {/* Search */}
@@ -136,10 +138,12 @@ const Properties = () => {
           <p className="text-muted-foreground mb-4">
             {searchTerm ? 'Try adjusting your search terms.' : 'Start by adding your first property.'}
           </p>
-          <Button className="btn-copper gap-2">
-            <Plus className="h-4 w-4" />
-            Add Property
-          </Button>
+          <AddPropertyDialog onPropertyAdded={fetchProperties}>
+            <Button className="btn-copper gap-2">
+              <Plus className="h-4 w-4" />
+              Add Property
+            </Button>
+          </AddPropertyDialog>
         </div>
       )}
     </div>

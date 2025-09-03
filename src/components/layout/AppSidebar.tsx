@@ -17,7 +17,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { User as SupabaseUser } from '@supabase/supabase-js';
-import { useNavigate, useLocation } from "react-router-dom";
+import { ProfileDialog } from "@/components/ProfileDialog";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface AppSidebarProps {
   user: SupabaseUser | null;
@@ -123,10 +124,12 @@ export const AppSidebar = ({ user }: AppSidebarProps) => {
         </div>
         
         <div className="flex gap-2">
-          <Button variant="ghost" size="sm" className="flex-1">
-            <User className="h-4 w-4 mr-2" />
-            Profile
-          </Button>
+          <ProfileDialog>
+            <Button variant="ghost" size="sm" className="flex-1">
+              <User className="h-4 w-4 mr-2" />
+              Profile
+            </Button>
+          </ProfileDialog>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -136,6 +139,10 @@ export const AppSidebar = ({ user }: AppSidebarProps) => {
             <LogOut className="h-4 w-4 mr-2" />
             Sign Out
           </Button>
+        </div>
+        
+        <div className="flex justify-center mt-2">
+          <ThemeToggle />
         </div>
       </div>
     </div>

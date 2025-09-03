@@ -111,10 +111,12 @@ const Tasks = () => {
           <h1 className="text-3xl font-bold tracking-tight">Tasks</h1>
           <p className="text-muted-foreground">Manage your to-do list and assignments</p>
         </div>
-        <Button className="btn-copper gap-2">
-          <Plus className="h-4 w-4" />
-          Add Task
-        </Button>
+        <AddTaskDialog onTaskAdded={fetchTasks}>
+          <Button className="btn-copper gap-2">
+            <Plus className="h-4 w-4" />
+            Add Task
+          </Button>
+        </AddTaskDialog>
       </div>
 
       {/* Search */}

@@ -78,10 +78,12 @@ const Contacts = () => {
           <h1 className="text-3xl font-bold tracking-tight">Contacts</h1>
           <p className="text-muted-foreground">Manage your customer contacts</p>
         </div>
-        <Button className="btn-copper gap-2">
-          <Plus className="h-4 w-4" />
-          Add Contact
-        </Button>
+        <AddContactDialog onContactAdded={fetchContacts}>
+          <Button className="btn-copper gap-2">
+            <Plus className="h-4 w-4" />
+            Add Contact
+          </Button>
+        </AddContactDialog>
       </div>
 
       {/* Search */}
@@ -165,10 +167,12 @@ const Contacts = () => {
           <p className="text-muted-foreground mb-4">
             {searchTerm ? 'Try adjusting your search terms.' : 'Start by adding your first contact.'}
           </p>
-          <Button className="btn-copper gap-2">
-            <Plus className="h-4 w-4" />
-            Add Contact
-          </Button>
+          <AddContactDialog onContactAdded={fetchContacts}>
+            <Button className="btn-copper gap-2">
+              <Plus className="h-4 w-4" />
+              Add Contact
+            </Button>
+          </AddContactDialog>
         </div>
       )}
     </div>

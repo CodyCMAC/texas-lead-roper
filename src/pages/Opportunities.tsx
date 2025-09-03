@@ -99,10 +99,12 @@ const Opportunities = () => {
           <h1 className="text-3xl font-bold tracking-tight">Opportunities</h1>
           <p className="text-muted-foreground">Manage your sales pipeline</p>
         </div>
-        <Button className="btn-copper gap-2">
-          <Plus className="h-4 w-4" />
-          Add Opportunity
-        </Button>
+        <AddOpportunityDialog onOpportunityAdded={fetchOpportunities}>
+          <Button className="btn-copper gap-2">
+            <Plus className="h-4 w-4" />
+            Add Opportunity
+          </Button>
+        </AddOpportunityDialog>
       </div>
 
       {/* Search */}
@@ -193,10 +195,12 @@ const Opportunities = () => {
           <p className="text-muted-foreground mb-4">
             {searchTerm ? 'Try adjusting your search terms.' : 'Start by adding your first opportunity.'}
           </p>
-          <Button className="btn-copper gap-2">
-            <Plus className="h-4 w-4" />
-            Add Opportunity
-          </Button>
+          <AddOpportunityDialog onOpportunityAdded={fetchOpportunities}>
+            <Button className="btn-copper gap-2">
+              <Plus className="h-4 w-4" />
+              Add Opportunity
+            </Button>
+          </AddOpportunityDialog>
         </div>
       )}
     </div>

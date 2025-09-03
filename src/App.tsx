@@ -13,7 +13,7 @@ import Contacts from "./pages/Contacts";
 import Leads from "./pages/Leads";
 import Opportunities from "./pages/Opportunities";
 import Service from "./pages/Service";
-import Tasks from "./pages/Tasks";
+import Reports from "./pages/Reports";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
