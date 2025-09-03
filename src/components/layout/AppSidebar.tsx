@@ -78,18 +78,18 @@ export const AppSidebar = ({ user }: AppSidebarProps) => {
       <div className="p-6 border-b border-border/30 bg-gradient-to-r from-primary/5 to-accent/5">
         <div className="flex items-center gap-3">
           <div className="relative group">
-            <div className="absolute -inset-1 bg-gradient-copper rounded-full blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+            <div className="absolute -inset-2 bg-gradient-copper rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
             <img 
               src="/lovable-uploads/c0b242e2-5443-4955-a498-c225fb78a2d9.png" 
               alt="Lead Wrangler" 
-              className="h-16 w-16 relative rounded-full shadow-copper hover:scale-105 transition-all duration-300"
+              className="h-20 w-20 relative shadow-copper hover:scale-105 transition-all duration-300"
               onError={(e) => {
                 // Fallback to icon if image fails to load
                 e.currentTarget.style.display = 'none';
                 e.currentTarget.nextElementSibling?.classList.remove('hidden');
               }}
             />
-            <Star className="h-16 w-16 text-primary hidden relative rounded-full" />
+            <Star className="h-20 w-20 text-primary hidden relative" />
           </div>
           <div className="flex-1">
             <h1 className="text-2xl font-bold bg-gradient-copper bg-clip-text text-transparent hover:bg-gradient-sunset transition-all duration-500">
