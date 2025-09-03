@@ -13,7 +13,17 @@ const Index = () => {
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
               <div className="sm:text-center lg:text-left">
                 <div className="flex items-center justify-center lg:justify-start mb-6">
-                  <Star className="h-12 w-12 text-primary mr-3" />
+                  <img 
+                    src="/lovable-uploads/c0b242e2-5443-4955-a498-c225fb78a2d9.png" 
+                    alt="Lead Wrangler" 
+                    className="h-16 w-16 mr-3 shadow-copper hover:scale-105 transition-all duration-300"
+                    onError={(e) => {
+                      // Fallback to icon if image fails to load
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                    }}
+                  />
+                  <Star className="h-12 w-12 text-primary mr-3 hidden" />
                   <h1 className="text-4xl font-bold bg-gradient-copper bg-clip-text text-transparent sm:text-5xl md:text-6xl">
                     Lead Wrangler
                   </h1>
