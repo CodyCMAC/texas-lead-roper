@@ -10,31 +10,44 @@ const Dashboard = () => {
   const navigate = useNavigate();
   
   return (
-    <div className="relative space-y-8 overflow-hidden">
+    <div className="relative space-y-8 overflow-hidden min-h-screen">
       {/* Creative Watermark Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Main large watermark */}
+        {/* Main large watermark - top right */}
         <div 
-          className="absolute -top-32 -right-32 w-96 h-96 opacity-[0.03] transform rotate-12"
+          className="absolute -top-16 -right-16 w-[500px] h-[500px] opacity-[0.08] transform rotate-12 transition-all duration-1000"
           style={{
             backgroundImage: `url(/lovable-uploads/66dd8bbe-07df-4be7-ad54-ff0988f53fce.png)`,
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center'
+            backgroundPosition: 'center',
+            filter: 'hue-rotate(15deg) saturate(0.7)'
           }}
         />
-        {/* Secondary smaller watermark */}
+        {/* Secondary watermark - bottom left */}
         <div 
-          className="absolute bottom-10 -left-20 w-64 h-64 opacity-[0.02] transform -rotate-12"
+          className="absolute bottom-0 -left-16 w-80 h-80 opacity-[0.06] transform -rotate-6"
           style={{
             backgroundImage: `url(/lovable-uploads/66dd8bbe-07df-4be7-ad54-ff0988f53fce.png)`,
             backgroundSize: 'contain',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center'
+            backgroundPosition: 'center',
+            filter: 'hue-rotate(-10deg) saturate(0.5)'
+          }}
+        />
+        {/* Center watermark - very subtle */}
+        <div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-[0.03]"
+          style={{
+            backgroundImage: `url(/lovable-uploads/66dd8bbe-07df-4be7-ad54-ff0988f53fce.png)`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            filter: 'blur(1px) saturate(0.3)'
           }}
         />
         {/* Subtle glow effect */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/[0.015] via-primary/[0.008] to-transparent rounded-full" />
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-gradient-radial from-primary/[0.02] via-primary/[0.01] to-transparent rounded-full animate-pulse" style={{ animationDuration: '4s' }} />
       </div>
       {/* Header */}
       <div className="flex items-center justify-between">
