@@ -17,13 +17,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { User as SupabaseUser } from '@supabase/supabase-js';
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface AppSidebarProps {
   user: SupabaseUser | null;
 }
 
 const navigationItems = [
-  { name: "Dashboard", icon: LayoutDashboard, href: "/dashboard", active: true },
+  { name: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
   { name: "Properties", icon: Building2, href: "/properties" },
   { name: "Contacts", icon: Users, href: "/contacts" },
   { name: "Leads", icon: Target, href: "/leads" },
@@ -34,6 +35,8 @@ const navigationItems = [
 
 export const AppSidebar = ({ user }: AppSidebarProps) => {
   const [profile, setProfile] = useState<any>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (user) {
@@ -83,20 +86,24 @@ export const AppSidebar = ({ user }: AppSidebarProps) => {
       {/* Navigation */}
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
-          {navigationItems.map((item) => (
-            <li key={item.name}>
-              <Button
-                variant={item.active ? "default" : "ghost"}
-                className={cn(
-                  "w-full justify-start gap-3 h-11",
-                  item.active && "btn-copper shadow-soft"
-                )}
-              >
-                <item.icon className="h-5 w-5" />
-                {item.name}
-              </Button>
-            </li>
-          ))}
+          {navigationItems.map((item) => {
+            const isActive = location.pathname === item.href;
+            return (
+              <li key={item.name}>
+                <Button
+                  variant={isActive ? "default" : "ghost"}
+                  className={cn(
+                    "w-full justify-start gap-3 h-11",
+                    isActive && "btn-copper shadow-soft"
+                  )}
+                  onClick={() => navigate(item.href)}
+                >
+                  <item.icon className="h-5 w-5" />
+                  {item.name}
+                </Button>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
