@@ -72,7 +72,8 @@ export default {
 				'gradient-copper': 'var(--gradient-copper)',
 				'gradient-sunset': 'var(--gradient-sunset)',
 				'gradient-sage': 'var(--gradient-sage)',
-				'gradient-surface': 'var(--gradient-surface)'
+				'gradient-surface': 'var(--gradient-surface)',
+				'gradient-radial': 'radial-gradient(ellipse at center, var(--tw-gradient-stops))'
 			},
 			boxShadow: {
 				'soft': 'var(--shadow-soft)',

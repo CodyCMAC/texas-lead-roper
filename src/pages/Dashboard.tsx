@@ -10,7 +10,32 @@ const Dashboard = () => {
   const navigate = useNavigate();
   
   return (
-    <div className="space-y-8">
+    <div className="relative space-y-8 overflow-hidden">
+      {/* Creative Watermark Background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Main large watermark */}
+        <div 
+          className="absolute -top-32 -right-32 w-96 h-96 opacity-[0.03] transform rotate-12"
+          style={{
+            backgroundImage: `url(/lovable-uploads/66dd8bbe-07df-4be7-ad54-ff0988f53fce.png)`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          }}
+        />
+        {/* Secondary smaller watermark */}
+        <div 
+          className="absolute bottom-10 -left-20 w-64 h-64 opacity-[0.02] transform -rotate-12"
+          style={{
+            backgroundImage: `url(/lovable-uploads/66dd8bbe-07df-4be7-ad54-ff0988f53fce.png)`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center'
+          }}
+        />
+        {/* Subtle glow effect */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-primary/[0.015] via-primary/[0.008] to-transparent rounded-full" />
+      </div>
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
