@@ -20,11 +20,18 @@ export default function AboutUs() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground leading-relaxed">
-              Born in the heart of Fort Worth, Texas, Lead Wrangler was created to help 
-              real estate professionals manage their leads, properties, and opportunities 
-              with the efficiency of a seasoned cowboy.
-            </p>
+            <div className="flex flex-col items-center gap-4">
+              <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">
+                <img 
+                  src="https://via.placeholder.com/96x96/6b7280/ffffff?text=CD" 
+                  alt="Developer placeholder" 
+                  className="w-full h-full rounded-full object-cover"
+                />
+              </div>
+              <p className="text-muted-foreground leading-relaxed text-center">
+                hi im Cody, do i look familiar? i build this last night (tuesday night) out of spite for jonny.... no i do not have any friends.
+              </p>
+            </div>
           </CardContent>
         </Card>
 
@@ -36,9 +43,7 @@ export default function AboutUs() {
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground leading-relaxed">
-              To provide real estate professionals with powerful, intuitive tools 
-              to wrangle their leads, manage properties, and close more deals - 
-              all with that Texas-sized customer service.
+              eventually ill finish "CMAC Operating System"
             </p>
           </CardContent>
         </Card>
