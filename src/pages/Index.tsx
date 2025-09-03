@@ -38,7 +38,12 @@ const Index = () => {
                     </Link>
                   </div>
                   <div className="mt-3 sm:mt-0 sm:ml-3">
-                    <Button variant="outline" size="lg" className="px-8 py-3 text-lg">
+                    <Button 
+                      variant="outline" 
+                      size="lg" 
+                      className="px-8 py-3 text-lg"
+                      onClick={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank')}
+                    >
                       Watch Demo
                     </Button>
                   </div>
