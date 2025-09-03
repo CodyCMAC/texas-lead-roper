@@ -16,7 +16,7 @@ const Index = () => {
                   <img 
                     src="/lovable-uploads/c0b242e2-5443-4955-a498-c225fb78a2d9.png" 
                     alt="Lead Wrangler" 
-                    className="h-16 w-16 mr-3 shadow-copper hover:scale-105 transition-all duration-300"
+                    className="h-24 w-24 mr-4 shadow-copper hover:scale-105 transition-all duration-300"
                     onError={(e) => {
                       // Fallback to icon if image fails to load
                       e.currentTarget.style.display = 'none';
