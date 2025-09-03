@@ -23,8 +23,8 @@ export default function AboutUs() {
             <div className="flex flex-col items-center gap-4">
               <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">
                 <img 
-                  src="https://via.placeholder.com/96x96/6b7280/ffffff?text=CD" 
-                  alt="Developer placeholder" 
+                  src="/lovable-uploads/36de2fe0-e3c1-4560-bce4-b79b5308ddb8.png" 
+                  alt="Cody - Lead Wrangler Developer" 
                   className="w-full h-full rounded-full object-cover"
                 />
               </div>
