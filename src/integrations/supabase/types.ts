@@ -758,6 +758,15 @@ export type Database = {
         Args: { "": string } | { "": unknown }
         Returns: unknown
       }
+      generate_address_hash: {
+        Args: {
+          address_line_1: string
+          city: string
+          state: string
+          zip_code: string
+        }
+        Returns: string
+      }
       get_user_role: {
         Args: { _user_id: string; _workspace_id: string }
         Returns: Database["public"]["Enums"]["app_role"]
@@ -817,6 +826,16 @@ export type Database = {
       l2_normalize: {
         Args: { "": string } | { "": unknown } | { "": unknown }
         Returns: unknown
+      }
+      normalize_address: {
+        Args: {
+          address_line_1: string
+          address_line_2?: string
+          city: string
+          state: string
+          zip_code: string
+        }
+        Returns: string
       }
       sparsevec_out: {
         Args: { "": unknown }
