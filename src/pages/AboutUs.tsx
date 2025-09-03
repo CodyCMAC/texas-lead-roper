@@ -23,7 +23,7 @@ export default function AboutUs() {
             <div className="flex flex-col items-center gap-4">
               <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center">
                 <img 
-                  src="/lovable-uploads/36de2fe0-e3c1-4560-bce4-b79b5308ddb8.png" 
+                  src="/lovable-uploads/9369e2ca-627f-4e1a-a3dd-9f7c86ba2d5f.png" 
                   alt="Cody - Lead Wrangler Developer" 
                   className="w-full h-full rounded-full object-cover"
                 />
