@@ -1,9 +1,14 @@
 import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import { RecentActivity } from "@/components/dashboard/RecentActivity";
 import { Button } from "@/components/ui/button";
+import { DoorKnockDialog } from "@/components/DoorKnockDialog";
+import { EstimateDialog } from "@/components/EstimateDialog";
 import { Plus, FileText, Map } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -15,7 +20,7 @@ const Dashboard = () => {
           </p>
         </div>
         <div className="flex gap-3">
-          <Button variant="outline" className="gap-2">
+          <Button variant="outline" className="gap-2" onClick={() => navigate('/properties')}>
             <Map className="h-4 w-4" />
             Field Map
           </Button>
@@ -23,7 +28,7 @@ const Dashboard = () => {
             <FileText className="h-4 w-4" />
             Reports
           </Button>
-          <Button className="btn-copper gap-2">
+          <Button className="btn-copper gap-2" onClick={() => navigate('/leads')}>
             <Plus className="h-4 w-4" />
             New Lead
           </Button>
@@ -43,20 +48,24 @@ const Dashboard = () => {
           {/* Quick Actions */}
           <div className="board-card p-6">
             <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
-            <div className="space-y-3">
+          <div className="space-y-3">
+            <DoorKnockDialog>
               <Button variant="outline" className="w-full justify-start gap-2">
                 <Plus className="h-4 w-4" />
                 Log Door Knock
               </Button>
+            </DoorKnockDialog>
+            <EstimateDialog>
               <Button variant="outline" className="w-full justify-start gap-2">
                 <FileText className="h-4 w-4" />
                 Create Estimate
               </Button>
-              <Button variant="outline" className="w-full justify-start gap-2">
-                <Map className="h-4 w-4" />
-                Plan Route
-              </Button>
-            </div>
+            </EstimateDialog>
+            <Button variant="outline" className="w-full justify-start gap-2" onClick={() => navigate('/properties')}>
+              <Map className="h-4 w-4" />
+              Plan Route
+            </Button>
+          </div>
           </div>
 
           {/* Hot Leads */}

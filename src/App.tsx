@@ -8,6 +8,12 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import Properties from "./pages/Properties";
+import Contacts from "./pages/Contacts";
+import Leads from "./pages/Leads";
+import Opportunities from "./pages/Opportunities";
+import Service from "./pages/Service";
+import Tasks from "./pages/Tasks";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -69,6 +75,36 @@ const App = () => (
             <Route path="/dashboard" element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            } />
+            <Route path="/properties" element={
+              <ProtectedRoute>
+                <Properties />
+              </ProtectedRoute>
+            } />
+            <Route path="/contacts" element={
+              <ProtectedRoute>
+                <Contacts />
+              </ProtectedRoute>
+            } />
+            <Route path="/leads" element={
+              <ProtectedRoute>
+                <Leads />
+              </ProtectedRoute>
+            } />
+            <Route path="/opportunities" element={
+              <ProtectedRoute>
+                <Opportunities />
+              </ProtectedRoute>
+            } />
+            <Route path="/service" element={
+              <ProtectedRoute>
+                <Service />
+              </ProtectedRoute>
+            } />
+            <Route path="/tasks" element={
+              <ProtectedRoute>
+                <Tasks />
               </ProtectedRoute>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
