@@ -73,89 +73,116 @@ export const AppSidebar = ({ user }: AppSidebarProps) => {
   const userInitials = userDisplayName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2);
 
   return (
-    <div className="flex flex-col h-full bg-card border-r border-border">
+    <div className="flex flex-col h-full bg-gradient-to-br from-background via-card to-background border-r border-border/50 backdrop-blur-sm">
       {/* Logo */}
-      <div className="p-6 border-b border-border">
-        <div className="flex items-center gap-2">
-          <img 
-            src="/lovable-uploads/c0b242e2-5443-4955-a498-c225fb78a2d9.png" 
-            alt="Lead Wrangler" 
-            className="h-12 w-12"
-            onError={(e) => {
-              // Fallback to icon if image fails to load
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.nextElementSibling?.classList.remove('hidden');
-            }}
-          />
-          <Star className="h-12 w-12 text-primary hidden" />
-          <div>
-            <h1 className="text-xl font-bold bg-gradient-copper bg-clip-text text-transparent">
+      <div className="p-6 border-b border-border/30 bg-gradient-to-r from-primary/5 to-accent/5">
+        <div className="flex items-center gap-3">
+          <div className="relative group">
+            <div className="absolute -inset-1 bg-gradient-copper rounded-full blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+            <img 
+              src="/lovable-uploads/c0b242e2-5443-4955-a498-c225fb78a2d9.png" 
+              alt="Lead Wrangler" 
+              className="h-16 w-16 relative rounded-full shadow-copper hover:scale-105 transition-all duration-300"
+              onError={(e) => {
+                // Fallback to icon if image fails to load
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+              }}
+            />
+            <Star className="h-16 w-16 text-primary hidden relative rounded-full" />
+          </div>
+          <div className="flex-1">
+            <h1 className="text-2xl font-bold bg-gradient-copper bg-clip-text text-transparent hover:bg-gradient-sunset transition-all duration-500">
               Lead Wrangler
             </h1>
-            <p className="text-xs text-muted-foreground">Fort Worth TX</p>
+            <p className="text-xs text-muted-foreground/80 tracking-wide">Fort Worth TX</p>
+            <div className="flex items-center gap-1 mt-1">
+              <div className="w-2 h-2 bg-success rounded-full animate-pulse"></div>
+              <span className="text-xs text-success/80 font-medium">ONLINE</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
-        <ul className="space-y-2">
-          {navigationItems.map((item) => {
-            const isActive = location.pathname === item.href;
-            return (
-              <li key={item.name}>
-                <Button
-                  variant={isActive ? "default" : "ghost"}
-                  className={cn(
-                    "w-full justify-start gap-3 h-11",
-                    isActive && "btn-copper shadow-soft"
-                  )}
-                  onClick={() => navigate(item.href)}
-                >
-                  <item.icon className="h-5 w-5" />
-                  {item.name}
-                </Button>
-              </li>
-            );
-          })}
-        </ul>
+      <nav className="flex-1 p-4 space-y-1">
+        {navigationItems.map((item) => {
+          const isActive = location.pathname === item.href;
+          return (
+            <div key={item.name} className="relative group">
+              {isActive && (
+                <div className="absolute inset-0 bg-gradient-copper rounded-lg blur opacity-20"></div>
+              )}
+              <Button
+                variant={isActive ? "default" : "ghost"}
+                className={cn(
+                  "w-full justify-start gap-3 h-12 relative transition-all duration-300 hover:shadow-soft",
+                  isActive && "bg-gradient-copper text-white shadow-copper hover:shadow-copper/70",
+                  !isActive && "hover:bg-accent/20 hover:text-accent-foreground hover:translate-x-1"
+                )}
+                onClick={() => navigate(item.href)}
+              >
+                <item.icon className={cn(
+                  "h-5 w-5 transition-all duration-300",
+                  isActive && "text-white drop-shadow-sm",
+                  !isActive && "group-hover:scale-110"
+                )} />
+                <span className="font-medium">{item.name}</span>
+                {isActive && (
+                  <div className="absolute right-2 w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                )}
+              </Button>
+            </div>
+          );
+        })}
       </nav>
 
       {/* User Profile */}
-      <div className="p-4 border-t border-border">
-        <div className="flex items-center gap-3 mb-3">
-          <Avatar className="h-10 w-10">
-            <AvatarImage src={profile?.avatar_url} alt={userDisplayName} />
-            <AvatarFallback className="bg-primary/10 text-primary">
-              {userInitials}
-            </AvatarFallback>
-          </Avatar>
+      <div className="p-4 border-t border-border/30 bg-gradient-to-r from-accent/5 to-primary/5 backdrop-blur-sm">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-sage rounded-full blur opacity-30 animate-pulse"></div>
+            <Avatar className="h-12 w-12 relative border-2 border-primary/20">
+              <AvatarImage src={profile?.avatar_url} alt={userDisplayName} />
+              <AvatarFallback className="bg-gradient-copper text-white font-bold">
+                {userInitials}
+              </AvatarFallback>
+            </Avatar>
+          </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate">{userDisplayName}</p>
-            <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+            <p className="text-sm font-semibold truncate bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+              {userDisplayName}
+            </p>
+            <p className="text-xs text-muted-foreground/80 truncate">{user?.email}</p>
+            <div className="flex items-center gap-1 mt-1">
+              <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
+              <span className="text-xs text-primary/80 font-medium">AUTHENTICATED</span>
+            </div>
           </div>
         </div>
         
-        <div className="flex gap-2">
+        <div className="grid grid-cols-2 gap-2 mb-3">
           <ProfileDialog>
-            <Button variant="ghost" size="sm" className="flex-1">
-              <User className="h-4 w-4 mr-2" />
-              Profile
+            <Button variant="outline" size="sm" className="group hover:bg-accent/20 hover:border-accent transition-all duration-300">
+              <User className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
+              <span className="font-medium">Profile</span>
             </Button>
           </ProfileDialog>
           <Button 
-            variant="ghost" 
+            variant="outline" 
             size="sm" 
             onClick={handleSignOut}
-            className="flex-1"
+            className="group hover:bg-destructive/20 hover:border-destructive/40 hover:text-destructive transition-all duration-300"
           >
-            <LogOut className="h-4 w-4 mr-2" />
-            Sign Out
+            <LogOut className="h-4 w-4 mr-2 group-hover:scale-110 transition-transform" />
+            <span className="font-medium">Exit</span>
           </Button>
         </div>
         
-        <div className="flex justify-center mt-2">
-          <ThemeToggle />
+        <div className="flex justify-center">
+          <div className="p-1 rounded-lg bg-accent/10 border border-accent/20">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </div>
