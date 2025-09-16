@@ -106,8 +106,8 @@ export const LeadDetailDialog = ({ lead, open, onClose, onUpdate }: LeadDetailDi
         .from('leads')
         .update({
           assigned_rep: editData.assigned_rep || null,
-          status: editData.status,
-          interest_level: editData.interest_level,
+          status: editData.status as any,
+          interest_level: editData.interest_level as any,
           notes: editData.notes,
           next_followup_date: editData.next_followup_date || null,
           tags: editData.tags.length > 0 ? editData.tags : null
