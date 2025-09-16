@@ -8,6 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
 import { AddPropertyDialog } from "@/components/AddPropertyDialog";
+import { PropertyDetailDialog } from "@/components/PropertyDetailDialog";
 
 interface Property {
   id: string;
@@ -22,12 +23,17 @@ interface Property {
   owner_occupancy: string;
   source: string;
   created_at: string;
+  county?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 const Properties = () => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
+  const [detailDialogOpen, setDetailDialogOpen] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -57,6 +63,16 @@ const Properties = () => {
     property.normalized_address.toLowerCase().includes(searchTerm.toLowerCase()) ||
     property.city.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handlePropertyClick = (property: Property) => {
+    setSelectedProperty(property);
+    setDetailDialogOpen(true);
+  };
+
+  const handleDetailClose = () => {
+    setDetailDialogOpen(false);
+    setSelectedProperty(null);
+  };
 
   if (loading) {
     return (
@@ -96,7 +112,11 @@ const Properties = () => {
       {/* Properties Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProperties.map((property) => (
-          <Card key={property.id} className="board-card hover:shadow-copper transition-all duration-300">
+          <Card 
+            key={property.id} 
+            className="board-card hover:shadow-copper transition-all duration-300 cursor-pointer" 
+            onClick={() => handlePropertyClick(property)}
+          >
             <CardHeader className="pb-3">
               <CardTitle className="text-lg flex items-start gap-2">
                 <Home className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
@@ -147,6 +167,12 @@ const Properties = () => {
           </AddPropertyDialog>
         </div>
       )}
+
+      <PropertyDetailDialog
+        property={selectedProperty}
+        open={detailDialogOpen}
+        onClose={handleDetailClose}
+      />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { toast } from "sonner";
 import { AddLeadDialog } from "@/components/AddLeadDialog";
+import { LeadDetailDialog } from "@/components/LeadDetailDialog";
 
 interface Lead {
   id: string;
@@ -21,12 +22,19 @@ interface Lead {
   disqual_reason?: string;
   tags?: string[];
   created_at: string;
+  assigned_rep?: string;
   properties?: {
     normalized_address: string;
+    address_line_1: string;
+    city: string;
+    state: string;
+    zip_code: string;
   };
   contacts?: {
     first_name: string;
     last_name: string;
+    email?: string;
+    phone?: string;
   };
 }
 
@@ -34,6 +42,8 @@ const Leads = () => {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
+  const [detailDialogOpen, setDetailDialogOpen] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
@@ -48,8 +58,8 @@ const Leads = () => {
         .from('leads')
         .select(`
           *,
-          properties!inner(normalized_address),
-          contacts(first_name, last_name)
+          properties!inner(normalized_address, address_line_1, city, state, zip_code),
+          contacts(first_name, last_name, email, phone)
         `)
         .order('created_at', { ascending: false });
 
@@ -74,6 +84,16 @@ const Leads = () => {
     if (score >= 60) return 'text-primary';
     if (score >= 40) return 'text-amber-500';
     return 'text-muted-foreground';
+  };
+
+  const handleLeadClick = (lead: Lead) => {
+    setSelectedLead(lead);
+    setDetailDialogOpen(true);
+  };
+
+  const handleDetailClose = () => {
+    setDetailDialogOpen(false);
+    setSelectedLead(null);
   };
 
   if (loading) {
@@ -114,7 +134,11 @@ const Leads = () => {
       {/* Leads Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredLeads.map((lead) => (
-          <Card key={lead.id} className="board-card hover:shadow-copper transition-all duration-300">
+          <Card 
+            key={lead.id} 
+            className="board-card hover:shadow-copper transition-all duration-300 cursor-pointer" 
+            onClick={() => handleLeadClick(lead)}
+          >
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
@@ -199,6 +223,13 @@ const Leads = () => {
           </AddLeadDialog>
         </div>
       )}
+
+      <LeadDetailDialog
+        lead={selectedLead}
+        open={detailDialogOpen}
+        onClose={handleDetailClose}
+        onUpdate={fetchLeads}
+      />
     </div>
   );
 };
