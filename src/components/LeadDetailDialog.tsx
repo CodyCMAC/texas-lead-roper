@@ -67,18 +67,16 @@ export const LeadDetailDialog = ({ lead, open, onClose, onUpdate }: LeadDetailDi
   const { user } = useAuth();
 
   useEffect(() => {
-    if (open) {
-      fetchProfiles();
-      if (lead) {
-        setEditData({
-          assigned_rep: lead.assigned_rep || '',
-          status: lead.status,
-          interest_level: lead.interest_level,
-          notes: lead.notes || '',
-          next_followup_date: lead.next_followup_date || '',
-          tags: lead.tags || []
-        });
-      }
+    fetchProfiles(); // Always fetch profiles to show assigned user names
+    if (lead) {
+      setEditData({
+        assigned_rep: lead.assigned_rep || '',
+        status: lead.status,
+        interest_level: lead.interest_level,
+        notes: lead.notes || '',
+        next_followup_date: lead.next_followup_date || '',
+        tags: lead.tags || []
+      });
     }
   }, [open, lead]);
 

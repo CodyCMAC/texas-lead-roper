@@ -11,6 +11,12 @@ import { toast } from "sonner";
 import { AddLeadDialog } from "@/components/AddLeadDialog";
 import { LeadDetailDialog } from "@/components/LeadDetailDialog";
 
+interface Profile {
+  id: string;
+  display_name: string;
+  user_id: string;
+}
+
 interface Lead {
   id: string;
   status: string;
@@ -44,11 +50,13 @@ const Leads = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [detailDialogOpen, setDetailDialogOpen] = useState(false);
+  const [profiles, setProfiles] = useState<Profile[]>([]);
   const { user } = useAuth();
 
   useEffect(() => {
     if (user) {
       fetchLeads();
+      fetchProfiles();
     }
   }, [user]);
 
@@ -73,6 +81,19 @@ const Leads = () => {
     }
   };
 
+  const fetchProfiles = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('id, display_name, user_id');
+
+      if (error) throw error;
+      setProfiles(data || []);
+    } catch (error) {
+      console.error('Error fetching profiles:', error);
+    }
+  };
+
   const filteredLeads = leads.filter(lead =>
     lead.properties?.normalized_address?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     `${lead.contacts?.first_name} ${lead.contacts?.last_name}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -84,6 +105,11 @@ const Leads = () => {
     if (score >= 60) return 'text-primary';
     if (score >= 40) return 'text-amber-500';
     return 'text-muted-foreground';
+  };
+
+  const getAssignedUserName = (userId: string) => {
+    const profile = profiles.find(p => p.user_id === userId);
+    return profile?.display_name || 'Unknown User';
   };
 
   const handleLeadClick = (lead: Lead) => {
@@ -193,6 +219,15 @@ const Leads = () => {
                 <p className="text-xs text-muted-foreground line-clamp-2">
                   {lead.notes}
                 </p>
+              )}
+
+              {lead.assigned_rep && (
+                <div className="flex items-center gap-2 text-sm">
+                  <User className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-muted-foreground">
+                    Assigned: {getAssignedUserName(lead.assigned_rep)}
+                  </span>
+                </div>
               )}
 
               <div className="flex items-center justify-between text-xs text-muted-foreground">

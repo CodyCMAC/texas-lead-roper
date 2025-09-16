@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { AppSidebar } from "./AppSidebar";
 import { useAuth } from "@/components/auth/AuthProvider";
+import { BannerNotificationSystem } from "@/components/BannerNotification";
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -23,6 +24,9 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
           {children}
         </main>
       </div>
+      
+      {/* Banner Notifications */}
+      <BannerNotificationSystem />
     </div>
   );
 };
