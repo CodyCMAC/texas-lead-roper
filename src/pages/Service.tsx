@@ -54,7 +54,7 @@ const Service = () => {
       if (error) throw error;
       setTickets(data || []);
     } catch (error) {
-      console.error('Error fetching service tickets:', error);
+      if (import.meta.env.DEV) console.error('Error fetching service tickets:', error);
       toast.error('Failed to load service tickets');
     } finally {
       setLoading(false);

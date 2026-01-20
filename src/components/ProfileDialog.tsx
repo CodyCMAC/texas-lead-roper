@@ -77,7 +77,7 @@ export const ProfileDialog = ({ children }: ProfileDialogProps) => {
         });
       }
     } catch (error) {
-      console.error('Error fetching profile:', error);
+      if (import.meta.env.DEV) console.error('Error fetching profile:', error);
       toast.error("Failed to load profile");
     }
   };
@@ -102,7 +102,7 @@ export const ProfileDialog = ({ children }: ProfileDialogProps) => {
       toast.success("Profile updated successfully!");
       setOpen(false);
     } catch (error) {
-      console.error('Error updating profile:', error);
+      if (import.meta.env.DEV) console.error('Error updating profile:', error);
       toast.error("Failed to update profile");
     } finally {
       setLoading(false);

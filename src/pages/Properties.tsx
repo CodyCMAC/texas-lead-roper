@@ -52,7 +52,7 @@ const Properties = () => {
       if (error) throw error;
       setProperties(data || []);
     } catch (error) {
-      console.error('Error fetching properties:', error);
+      if (import.meta.env.DEV) console.error('Error fetching properties:', error);
       toast.error('Failed to load properties');
     } finally {
       setLoading(false);
