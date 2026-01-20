@@ -80,7 +80,10 @@ export const AddTaskDialog = ({ children, onTaskAdded }: AddTaskDialogProps) => 
       });
       onTaskAdded?.();
     } catch (error) {
-      console.error('Error creating task:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error creating task:', error);
+      }
       toast.error("Failed to create task");
     } finally {
       setLoading(false);

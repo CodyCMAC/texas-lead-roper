@@ -143,7 +143,10 @@ export const DoorKnockDialog = ({ children }: DoorKnockDialogProps) => {
         notes: '',
       });
     } catch (error) {
-      console.error('Error logging door knock:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error logging door knock:', error);
+      }
       toast.error('Failed to log door knock');
     } finally {
       setLoading(false);

@@ -125,7 +125,10 @@ export const AddLeadDialog = ({ children, onLeadAdded }: AddLeadDialogProps) => 
       });
       onLeadAdded?.();
     } catch (error) {
-      console.error('Error creating lead:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error creating lead:', error);
+      }
       toast.error("Failed to create lead");
     } finally {
       setLoading(false);

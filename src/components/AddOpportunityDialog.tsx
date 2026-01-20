@@ -55,7 +55,10 @@ export const AddOpportunityDialog = ({ children, onOpportunityAdded }: AddOpport
       if (error) throw error;
       setProperties(data || []);
     } catch (error) {
-      console.error('Error fetching properties:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error fetching properties:', error);
+      }
     }
   };
 
@@ -108,7 +111,10 @@ export const AddOpportunityDialog = ({ children, onOpportunityAdded }: AddOpport
       });
       onOpportunityAdded?.();
     } catch (error) {
-      console.error('Error creating opportunity:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error creating opportunity:', error);
+      }
       toast.error("Failed to create opportunity");
     } finally {
       setLoading(false);
