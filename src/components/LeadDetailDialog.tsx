@@ -89,7 +89,7 @@ export const LeadDetailDialog = ({ lead, open, onClose, onUpdate }: LeadDetailDi
       if (error) throw error;
       setProfiles(data || []);
     } catch (error) {
-      console.error('Error fetching profiles:', error);
+      if (import.meta.env.DEV) console.error('Error fetching profiles:', error);
     }
   };
 
@@ -118,7 +118,7 @@ export const LeadDetailDialog = ({ lead, open, onClose, onUpdate }: LeadDetailDi
       setIsEditing(false);
       onUpdate();
     } catch (error) {
-      console.error('Error updating lead:', error);
+      if (import.meta.env.DEV) console.error('Error updating lead:', error);
       toast.error('Failed to update lead');
     } finally {
       setLoading(false);

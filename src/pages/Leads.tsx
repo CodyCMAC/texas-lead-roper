@@ -74,7 +74,7 @@ const Leads = () => {
       if (error) throw error;
       setLeads(data || []);
     } catch (error) {
-      console.error('Error fetching leads:', error);
+      if (import.meta.env.DEV) console.error('Error fetching leads:', error);
       toast.error('Failed to load leads');
     } finally {
       setLoading(false);
@@ -90,7 +90,7 @@ const Leads = () => {
       if (error) throw error;
       setProfiles(data || []);
     } catch (error) {
-      console.error('Error fetching profiles:', error);
+      if (import.meta.env.DEV) console.error('Error fetching profiles:', error);
     }
   };
 

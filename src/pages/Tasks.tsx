@@ -45,7 +45,7 @@ const Tasks = () => {
       if (error) throw error;
       setTasks(data || []);
     } catch (error) {
-      console.error('Error fetching tasks:', error);
+      if (import.meta.env.DEV) console.error('Error fetching tasks:', error);
       toast.error('Failed to load tasks');
     } finally {
       setLoading(false);
@@ -71,7 +71,7 @@ const Tasks = () => {
       
       toast.success(completed ? 'Task completed!' : 'Task reopened');
     } catch (error) {
-      console.error('Error updating task:', error);
+      if (import.meta.env.DEV) console.error('Error updating task:', error);
       toast.error('Failed to update task');
     }
   };

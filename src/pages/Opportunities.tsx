@@ -51,7 +51,7 @@ const Opportunities = () => {
       if (error) throw error;
       setOpportunities(data || []);
     } catch (error) {
-      console.error('Error fetching opportunities:', error);
+      if (import.meta.env.DEV) console.error('Error fetching opportunities:', error);
       toast.error('Failed to load opportunities');
     } finally {
       setLoading(false);
