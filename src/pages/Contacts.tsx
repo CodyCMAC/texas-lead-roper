@@ -45,7 +45,10 @@ const Contacts = () => {
       if (error) throw error;
       setContacts(data || []);
     } catch (error) {
-      console.error('Error fetching contacts:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error fetching contacts:', error);
+      }
       toast.error('Failed to load contacts');
     } finally {
       setLoading(false);

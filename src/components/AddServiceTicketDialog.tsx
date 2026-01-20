@@ -52,7 +52,10 @@ export const AddServiceTicketDialog = ({ children, onTicketAdded }: AddServiceTi
       if (error) throw error;
       setProperties(data || []);
     } catch (error) {
-      console.error('Error fetching properties:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error fetching properties:', error);
+      }
     }
   };
 
@@ -101,7 +104,10 @@ export const AddServiceTicketDialog = ({ children, onTicketAdded }: AddServiceTi
       });
       onTicketAdded?.();
     } catch (error) {
-      console.error('Error creating service ticket:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error creating service ticket:', error);
+      }
       toast.error("Failed to create service ticket");
     } finally {
       setLoading(false);

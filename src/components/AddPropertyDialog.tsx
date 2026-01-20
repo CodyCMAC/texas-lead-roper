@@ -93,7 +93,10 @@ export const AddPropertyDialog = ({ children, onPropertyAdded }: AddPropertyDial
       });
       onPropertyAdded?.();
     } catch (error) {
-      console.error('Error creating property:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error creating property:', error);
+      }
       toast.error("Failed to create property");
     } finally {
       setLoading(false);

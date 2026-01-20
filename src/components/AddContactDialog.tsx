@@ -87,7 +87,10 @@ export const AddContactDialog = ({ children, onContactAdded }: AddContactDialogP
       });
       onContactAdded?.();
     } catch (error) {
-      console.error('Error creating contact:', error);
+      // Only log sanitized error info in production
+      if (import.meta.env.DEV) {
+        console.error('Error creating contact:', error);
+      }
       toast.error("Failed to create contact");
     } finally {
       setLoading(false);
